@@ -17,9 +17,8 @@
                 <i class="fa fa-lg" [ngClass]="item.isChecked ? 'fa-check-circle-o' : 'fa-circle-thin'"></i>
             </span>
             {{item.title}}
-            <span class="hover-cursor text-danger pull-right" (click)="onDelete(item.$key)">
+            <span class="hover-cursor text-danger pull-right trash_icon" (click)="onDelete(item.$key)">
                 <i class="fa fa-trash-o fa-lg">
-
                 </i>
             </span>
         </li>
