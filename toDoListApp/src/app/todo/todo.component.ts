@@ -11,7 +11,7 @@ export class TodoComponent implements OnInit {
   constructor(private toDoService : TodoService) { }
 
   ngOnInit() {
-    this.toDoService.gettoDoList().snapshotChanges().subscribe(item => {
+     this.toDoService.gettoDoList().snapshotChanges().subscribe(item => {
       this.toDoListArray = [];
       item.forEach(element => {
         let x = element.payload.toJSON();
@@ -19,13 +19,16 @@ export class TodoComponent implements OnInit {
         this.toDoListArray.push(x);
       })
     })
-
-    this.toDoListArray.sort((a,b) => {
-      return a.isChecked - b.isChecked;
-    })
   }
   onAdd(itemTitle) {
     this.toDoService.addTitle(itemTitle.value);
     itemTitle.value = null;
+  }
+  checkDo(key : any, bool : boolean) {
+    this.toDoService.checkOrUnCheckTitle(key ,!bool);
+  }
+
+  onDelete(key) {
+    this.toDoService.removeTitle(key);
   }
 }
