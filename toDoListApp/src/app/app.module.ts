@@ -6,6 +6,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { TodoComponent } from './todo/todo.component';
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,6 +14,7 @@ import { TodoComponent } from './todo/todo.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule
