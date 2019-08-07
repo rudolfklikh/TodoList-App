@@ -3,9 +3,22 @@
 </div>
 
 <div class="input-group">
-    <input type="text" class="form-control" #itemTitle>
-    <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle)">
-        <i class="fa fa-plus-circle fa-2x"></i>
+    <input type="text" class="form-control" [formControl]='task'>
+    <button [disabled]='task.invalid' class="submit__button" (click)="onAdd(task)">
+            <div class="input-group-addon hover-cursor">
+                    <i class="fa fa-plus-circle fa-2x"></i>
+            </div>
+    </button>
+</div>
+<div *ngIf="task.invalid && (task.dirty || task.touched)" class="alert alert-danger">
+    <div *ngIf="task.value == '' || task.value == null">
+        Cannot be Empty
+    </div>
+    <div *ngIf="task.errors?.minlength">
+        Task is required
+    </div>
+    <div *ngIf="task.errors?.minlength">
+        Task cannot be less than 4 characters
     </div>
 </div>
 

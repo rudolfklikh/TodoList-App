@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from "./shared/todo.service";
+import { FormControl ,Validators } from '@angular/forms';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -8,7 +9,9 @@ import { TodoService } from "./shared/todo.service";
 })
 export class TodoComponent implements OnInit {
   toDoListArray : any[];
+  task = new FormControl('', [Validators.minLength(4), Validators.required]);
   constructor(private toDoService : TodoService) { }
+
 
   ngOnInit() {
      this.toDoService.gettoDoList().snapshotChanges().subscribe(item => {
@@ -22,7 +25,7 @@ export class TodoComponent implements OnInit {
   }
   onAdd(itemTitle) {
     this.toDoService.addTitle(itemTitle.value);
-    itemTitle.value = null;
+    this.task.setValue(null);
   }
   checkDo(key : any, bool : boolean) {
     this.toDoService.checkOrUnCheckTitle(key ,!bool);
